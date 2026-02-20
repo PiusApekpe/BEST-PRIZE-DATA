@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Telecel - PROOFAGE DATA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="BANNER.png" type="image/x-icon">
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:red;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 20px;
+    background:black;
+    color:white;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+}
+
+.container{
+    max-width:500px;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+.logo{
+    text-align:center;
+}
+
+.logo img{
+    width:200px;
+}
+
+.notice{
+    background:black;
+    color:white;
+    padding:10px;
+    text-align:center;
+    font-size:14px;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    box-sizing:border-box;
+}
+
+.bundles{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.bundle-btn{
+    padding:10px;
+    border:none;
+    background:black;
+    color:white;
+    cursor:pointer;
+}
+
+.bundle-btn.active{
+    background:green;
+}
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    background:#25D366;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+@media(max-width:600px){
+    .bundles{grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+    <div>TELECEL DATA</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="mtn.html">MTN</a>
+    </div>
+</nav>
+
+<div class="notice">
+⚠ Orders may delay small. You will receive when it reaches your turn.
+</div>
+
+<div class="container">
+
+<div class="logo">
+<img src="Telcel-Ghana-logo-.jpg" alt="Telecel Logo">
+</div>
+
+<input type="text" id="name" placeholder="Full Name">
+<input type="text" id="phone" placeholder="Telecel Number">
+
+<h3>Select Bundle</h3>
+
+<div class="bundles">
+<button class="bundle-btn" onclick="selectBundle(this,'1GB - 5 Ghana Cedis')">1GB - 5 Ghana Cedis</button>
+<button class="bundle-btn" onclick="selectBundle(this,'2GB - 9.50 Ghana Cedis')">2GB - 9.50 Ghana Cedis</button>
+<button class="bundle-btn" onclick="selectBundle(this,'3GB - 14.50 Ghana Cedis')">3GB - 14.50 Ghana Cedis</button>
+<button class="bundle-btn" onclick="selectBundle(this,'5GB - 24 Ghana Cedis')">5GB - 24 Ghana Cedis</button>
+<button class="bundle-btn" onclick="selectBundle(this,'10GB - 45 Ghana Cedis')">10GB - 45 Ghana Cedis</button>
+<button class="bundle-btn" onclick="selectBundle(this,'20GB - 85 Ghana Cedis')">20GB - 85 Ghana Cedis</button>
+</div>
+
+<p><strong>Send MoMo To:</strong> 0538718569</p>
+
+<!-- NEW: Paste Transaction Message -->
+<textarea id="transaction" placeholder="Copy & Paste your MoMo transaction message here" rows="4"></textarea>
+
+<button class="submit-btn" onclick="sendOrder()">Place Order</button>
+
+</div>
+
+<script>
+
+let bundle="";
+
+function selectBundle(btn,value){
+    bundle=value;
+    document.querySelectorAll(".bundle-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+}
+
+function sendOrder(){
+    let name=document.getElementById("name").value;
+    let phone=document.getElementById("phone").value;
+    let transaction=document.getElementById("transaction").value;
+
+    if(name=="" || phone=="" || bundle=="" || transaction==""){
+        alert("Complete all details including your transaction message");
+        return;
+    }
+
+    let yourNumber="233538718569";
+
+    let message="Telecel ORDER%0AName: "+name+
+    "%0ANumber: "+phone+
+    "%0ABundle: "+bundle+
+    "%0APayment Details: "+encodeURIComponent(transaction);
+
+    window.open("https://wa.me/"+yourNumber+"?text="+message);
+}
+
+</script>
+
+</body>
+</html>

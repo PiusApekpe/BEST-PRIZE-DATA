@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PROOFAGE DATA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="BANNER.png" type="image/x-icon">
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(45deg,#0044ff,#00aaff);
+    color:white;
+    text-align:center;
+}
+
+/* NAVIGATION */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+    background:rgba(0,0,0,0.6);
+    flex-wrap:wrap;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.nav-left img{
+    width:50px; 
+    height:50px;
+    object-fit:contain;
+}
+
+.nav-left h2{
+    margin:0;
+    font-size:24px;
+}
+
+.nav-right ul{
+    list-style:none;
+    display:flex;
+    gap:15px;
+    padding:0;
+    margin:0;
+    flex-wrap:wrap;
+}
+
+.nav-right ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.nav-right ul li a:hover{
+    color:yellow;
+}
+
+/* HERO / BANNER */
+.hero{
+    margin-top:20px;
+    animation:fadeIn 2s ease-in-out;
+}
+
+.hero img{
+    width:100%;
+    max-height:400px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(-20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* BUTTONS */
+.btn-container{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:15px 20px;
+    background:white;
+    color:black;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+    width:250px;
+    height:250px;
+}
+
+.btn img{
+    max-width:120px;
+    max-height:120px;
+    margin-bottom:10px;
+}
+
+.btn:hover{
+    background:yellow;
+}
+
+/* FOOTER */
+footer{
+    margin-top:50px;
+    padding:20px;
+    background:rgba(0,0,0,0.6);
+}
+
+/* RESPONSIVE */
+@media(max-width:1200px){
+    .btn{
+        width:220px;
+        height:220px;
+    }
+}
+
+@media(max-width:992px){
+    .btn{
+        width:200px;
+        height:200px;
+    }
+    .hero img{
+        max-height:350px;
+    }
+}
+
+@media(max-width:768px){
+    nav{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .btn-container{
+        justify-content:center;
+        gap:15px;
+    }
+    .btn{
+        width:180px;
+        height:180px;
+    }
+    .hero img{
+        max-height:300px;
+    }
+}
+
+@media(max-width:480px){
+    .btn{
+        width:160px;
+        height:160px;
+    }
+    .hero img{
+        max-height:250px;
+    }
+    .nav-left h2{
+        font-size:20px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-left">
+        <img src="BANNER.png" alt="Logo">
+        <h2>PROOFAGE DATA</h2>
+    </div>
+    <div class="nav-right">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mtn.html">MTN</a></li>
+            <li><a href="telecel.html">Telecel</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="hero">
+    <img src="banner2.png" alt="Banner">
+</div>
+
+<div class="btn-container">
+    <a href="mtn.html" class="btn">
+        <img src="New-mtn-logo-1.jpg.webp" alt="MTN Logo">
+        Buy MTN Data
+    </a>
+
+    <a href="telecel.html" class="btn">
+        <img src="Telcel-Ghana-logo-.jpg" alt="Telecel Logo">
+        Buy Telecel Data
+    </a>
+</div>
+
+<footer>
+Best Deals Data in Ghana 💙 Fast • Reliable • Trusted
+</footer>
+
+</body>
+</html>
