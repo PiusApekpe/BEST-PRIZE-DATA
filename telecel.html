@@ -1,101 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Telecel - PROOFAGE DATA</title>
+<title>Telecel - BEST PRIZE DATA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <link rel="shortcut icon" href="BANNER.png" type="image/x-icon">
 <style>
-
-body{
-    margin:0;
-    font-family:Arial;
-    background:red;
-}
-
-nav{
-    display:flex;
-    justify-content:space-between;
-    padding:15px 20px;
-    background:black;
-    color:white;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:15px;
-}
-
-.container{
-    max-width:500px;
-    margin:20px auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-}
-
-.logo{
-    text-align:center;
-}
-
-.logo img{
-    width:200px;
-}
-
-.notice{
-    background:black;
-    color:white;
-    padding:10px;
-    text-align:center;
-    font-size:14px;
-}
-
-input, select, textarea{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    box-sizing:border-box;
-}
-
-.bundles{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin-top:15px;
-}
-
-.bundle-btn{
-    padding:10px;
-    border:none;
-    background:black;
-    color:white;
-    cursor:pointer;
-}
-
-.bundle-btn.active{
-    background:green;
-}
-
-.submit-btn{
-    width:100%;
-    padding:15px;
-    margin-top:20px;
-    background:#25D366;
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-
-@media(max-width:600px){
-    .bundles{grid-template-columns:1fr;}
-}
-
+body{margin:0;font-family:Arial;background:#ff3300;}
+nav{display:flex;justify-content:space-between;padding:15px 20px;background:black;color:white;}
+nav a{color:white;text-decoration:none;margin-left:15px;}
+.container{max-width:500px;margin:20px auto;background:white;padding:20px;border-radius:10px;}
+.logo{text-align:center;}
+.logo img{width:200px;}
+.notice{background:black;color:white;padding:10px;text-align:center;font-size:14px;}
+input, select{width:100%;padding:12px;margin-top:10px;box-sizing:border-box;border-radius:8px;border:1px solid #ddd;}
+.bundles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px;}
+.bundle-btn{padding:10px;border:none;background:black;color:white;cursor:pointer;}
+.bundle-btn.active{background:green;}
+.submit-btn{width:100%;padding:15px;margin-top:20px;background:#25D366;color:white;border:none;cursor:pointer;}
+@media(max-width:600px){.bundles{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
 <nav>
-    <div>TELECEL DATA</div>
+    <div>Telecel DATA</div>
     <div>
         <a href="index.html">Home</a>
         <a href="mtn.html">MTN</a>
@@ -107,64 +37,76 @@ input, select, textarea{
 </div>
 
 <div class="container">
-
 <div class="logo">
 <img src="Telcel-Ghana-logo-.jpg" alt="Telecel Logo">
 </div>
 
 <input type="text" id="name" placeholder="Full Name">
 <input type="text" id="phone" placeholder="Telecel Number">
+<input type="text" id="whatsapp" placeholder="WhatsApp Number (optional)">
 
 <h3>Select Bundle</h3>
-
 <div class="bundles">
-<button class="bundle-btn" onclick="selectBundle(this,'1GB - 5 Ghana Cedis')">1GB - 5 Ghana Cedis</button>
-<button class="bundle-btn" onclick="selectBundle(this,'2GB - 9.50 Ghana Cedis')">2GB - 9.50 Ghana Cedis</button>
-<button class="bundle-btn" onclick="selectBundle(this,'3GB - 14.50 Ghana Cedis')">3GB - 14.50 Ghana Cedis</button>
-<button class="bundle-btn" onclick="selectBundle(this,'5GB - 24 Ghana Cedis')">5GB - 24 Ghana Cedis</button>
-<button class="bundle-btn" onclick="selectBundle(this,'10GB - 45 Ghana Cedis')">10GB - 45 Ghana Cedis</button>
-<button class="bundle-btn" onclick="selectBundle(this,'20GB - 85 Ghana Cedis')">20GB - 85 Ghana Cedis</button>
+<button class="bundle-btn" onclick="selectBundle(this,'1GB - 4 GHS',400)">1GB - 4 GHS</button>
+<button class="bundle-btn" onclick="selectBundle(this,'2GB - 8 GHS',800)">2GB - 8 GHS</button>
+<button class="bundle-btn" onclick="selectBundle(this,'3GB - 12 GHS',1200)">3GB - 12 GHS</button>
+<button class="bundle-btn" onclick="selectBundle(this,'5GB - 20 GHS',2000)">5GB - 20 GHS</button>
+<button class="bundle-btn" onclick="selectBundle(this,'10GB - 40 GHS',4000)">10GB - 40 GHS</button>
 </div>
 
-<p><strong>Send MoMo To:</strong> 0538718569</p>
-
-<!-- NEW: Paste Transaction Message -->
-<textarea id="transaction" placeholder="Copy & Paste your MoMo transaction message here" rows="4"></textarea>
-
-<button class="submit-btn" onclick="sendOrder()">Place Order</button>
-
+<button class="submit-btn" onclick="payWithPaystack()">Pay & Place Order</button>
 </div>
 
 <script>
+// Initialize EmailJS
+emailjs.init("pi2bmfpD8_AQ3JkXl"); // Your Public Key
 
-let bundle="";
+let selectedBundle = "";
+let amount = 0;
 
-function selectBundle(btn,value){
-    bundle=value;
-    document.querySelectorAll(".bundle-btn").forEach(b=>b.classList.remove("active"));
+function selectBundle(btn, bundleName, bundleAmount){
+    selectedBundle = bundleName;
+    amount = bundleAmount;
+    document.querySelectorAll(".bundle-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
 }
 
-function sendOrder(){
-    let name=document.getElementById("name").value;
-    let phone=document.getElementById("phone").value;
-    let transaction=document.getElementById("transaction").value;
+function payWithPaystack(){
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const whatsapp = document.getElementById("whatsapp").value.trim();
 
-    if(name=="" || phone=="" || bundle=="" || transaction==""){
-        alert("Complete all details including your transaction message");
+    if(name == "" || phone == "" || selectedBundle == ""){
+        alert("Please complete all fields and select a bundle.");
         return;
     }
 
-    let yourNumber="233538718569";
-
-    let message="Telecel ORDER%0AName: "+name+
-    "%0ANumber: "+phone+
-    "%0ABundle: "+bundle+
-    "%0APayment Details: "+encodeURIComponent(transaction);
-
-    window.open("https://wa.me/"+yourNumber+"?text="+message);
+    var handler = PaystackPop.setup({
+        key: 'pk_test_82f0f47663bd020f9a3e4af947d6493495e70166',
+        email: name.replace(/\s/g,'')+'@example.com',
+        amount: amount,
+        currency: "GHS",
+        ref: 'DATA_'+Math.floor((Math.random()*1000000000)+1),
+        callback: function(response){
+            // Send order info to your Gmail via EmailJS
+            emailjs.send("service_nikspbt", "template_nunmsyu", {
+                fullname: name,
+                phonenumber: phone,
+                bundle: selectedBundle,
+                whatsapp: whatsapp,
+                reference: response.reference
+            }).then(function(){
+                alert('Payment successful! Order details sent to your email.');
+            }).catch(function(){
+                alert('Payment successful but email failed. Check EmailJS setup.');
+            });
+        },
+        onClose: function(){
+            alert('Transaction cancelled.');
+        }
+    });
+    handler.openIframe();
 }
-
 </script>
 
 </body>

@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>BEST PRIZE DATA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="BANNER.png" type="image/x-icon">
+<style>
+/* GENERAL */
+*{
+  box-sizing:border-box;
+  scroll-behavior: smooth;
+}
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(45deg,#0044ff,#00aaff);
+  color: #111;
+  overflow-x:hidden;
+}
+
+/* NAVIGATION */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+  flex-wrap:wrap;
+}
+
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.nav-left img{
+  width:50px; 
+  height:50px;
+  object-fit:contain;
+}
+
+.nav-left h2{
+  margin:0;
+  font-size:24px;
+  color:white;
+}
+
+.nav-right ul{
+  list-style:none;
+  display:flex;
+  gap:25px;
+  padding:0;
+  margin:0;
+  flex-wrap:wrap;
+}
+
+.nav-right ul li a{
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.nav-right ul li a:hover{
+  color:yellow;
+}
+
+/* HERO SECTION */
+.hero{
+  width:100%;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter: brightness(60%);
+  animation: zoom 20s infinite alternate;
+}
+
+.hero-text{
+  position:absolute;
+  text-align:center;
+  color:white;
+  max-width:90%;
+  animation: fadeInDown 2s ease-in-out;
+}
+
+.hero-text h1{
+  font-size:48px;
+  margin:0;
+  text-shadow: 0 2px 15px rgba(0,0,0,0.6);
+}
+
+.hero-text p{
+  font-size:20px;
+  margin-top:10px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+/* BUTTONS SECTIONS */
+.section{
+  max-width:1200px;
+  margin:80px auto 40px;
+  padding:0 20px;
+  opacity:0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.section.visible{
+  opacity:1;
+  transform: translateY(0);
+}
+
+.section h2{
+  text-align:center;
+  color:white;
+  font-size:32px;
+  margin-bottom:30px;
+  text-shadow:0 2px 5px rgba(0,0,0,0.5);
+}
+
+.btn-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:25px;
+  justify-items:center;
+}
+
+.btn{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:white;
+  color:black;
+  border-radius:15px;
+  padding:25px;
+  text-decoration:none;
+  font-weight:bold;
+  width:220px;
+  height:240px;
+  transition: all 0.3s ease;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+
+.btn img{
+  max-width:120px;
+  max-height:120px;
+  margin-bottom:15px;
+}
+
+.btn:hover{
+  transform: translateY(-8px) scale(1.05);
+  box-shadow:0 15px 30px rgba(0,0,0,0.4);
+  background: #ffe600;
+}
+
+/* FOOTER */
+footer{
+  margin-top:50px;
+  padding:40px;
+  background:rgba(0,0,0,0.85);
+  color:white;
+}
+
+.footer-section{
+  display:flex;
+  justify-content:space-around;
+  flex-wrap:wrap;
+  gap:50px;
+  margin-bottom:20px;
+}
+
+.dev-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:150px;
+  text-align:center;
+}
+
+.dev-card img{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  margin-bottom:10px;
+}
+
+.service-list{
+  list-style:none;
+  padding:0;
+}
+
+.service-list li{
+  margin-bottom:8px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInDown{
+  from{opacity:0; transform: translateY(-40px);}
+  to{opacity:1; transform: translateY(0);}
+}
+
+@keyframes zoom{
+  from{transform: scale(1);}
+  to{transform: scale(1.1);}
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .btn-container{
+    grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+  }
+  .hero-text h1{
+    font-size:36px;
+  }
+  .hero-text p{
+    font-size:18px;
+  }
+}
+
+@media(max-width:480px){
+  .btn-container{
+    grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+  }
+  .hero-text h1{
+    font-size:28px;
+  }
+  .hero-text p{
+    font-size:16px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="nav-left">
+        <img src="BANNER.png" alt="Logo">
+        <h2>BEST PRIZE DATA</h2>
+    </div>
+    <div class="nav-right">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            
+           
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <img src="banner2.png" alt="Banner">
+  <div class="hero-text">
+    <h1>Fast • Reliable • Trusted</h1>
+    <p>Buy MTN & Telecel Data, Airtime, Mushup Bundles, and Check BECE/WASSCE Results Instantly!</p>
+  </div>
+</div>
+
+<!-- DATA SERVICES -->
+<div class="section" id="data-services">
+    <h2>MTN PRODUCTS</h2>
+    <div class="btn-container">
+        <a href="mtn.html" class="btn">
+            <img src="New-mtn-logo-1.jpg.webp" alt="MTN Logo">
+            Buy MTN Data
+        </a>
+        <a href="mtn-airtime.html" class="btn">
+            <img src="air time mtn.jfif" alt="MTN Airtime">
+            Buy MTN Airtime
+        </a>
+        </a>
+        <a href="mtn-mushup.html" class="btn">
+            <img src="mush up.jpg" alt="MTN Mushup">
+            MTN Mushup Bundles
+        </a>
+    </div>
+</div>
+
+<!-- AIRTIME SERVICES -->
+<div class="section" id="airtime-services">
+    <h2>COMING SOON</h2>
+    <div class="btn-container">
+       <a href="#" class="btn">
+            <img src="#" alt="#">
+            COMING SOON
+        <a href="#" class="btn">
+            <img src="#" alt="#">
+            COMING SOON
+        </a>
+    </div>
+</div>
+
+<!-- RESULTS SERVICES -->
+<div class="section" id="results-services">
+    <h2>COMING SOON</h2>
+    <div class="btn-container">
+        <a href="#" class="btn">
+            <img src="#" alt="#">
+            COMING SOON
+        </a>
+        <a href="#" class="btn">
+            <img src="#" alt="#">
+            COMING SOON
+        </a>
+    </div>
+</div>
+
+
+<!-- RECTANGULAR PROMO BANNER -->
+<div class="section" id="promo-banner" style="background:#ffe600; border-radius:15px; padding:40px 20px; margin:40px 20px; text-align:center; box-shadow:0 5px 25px rgba(0,0,0,0.3);">
+    <h2 style="color:#0044ff; font-size:32px; margin-bottom:15px;">Special Offer!</h2>
+    <p style="color:#111; font-size:18px;">Purchase any data bundle today and get extra bonus data instantly! Limited time only.</p>
+</div>
+
+<!-- GOOGLE PLAY STORE DOWNLOAD SECTION -->
+<div class="section" id="download-app" style="text-align:center; margin:40px 20px;">
+    <h2 style="color:white; font-size:32px; margin-bottom:25px;">Get the BEST PRIZE DATA App</h2>
+    <a href="https://play.google.com/store" target="_blank" style="display:inline-block; background:white; padding:15px 25px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.3); text-decoration:none; transition:0.3s;">
+        <img src="google store.webp" alt="Download on Google Play" style="max-width:180px; max-height:70px; display:block; margin:0 auto;">
+        <span style="display:block; margin-top:10px; font-weight:bold; color:#111;">Download App</span>
+    </a>
+</div>
+
+
+<!-- SUPPORT CONTACT SECTION -->
+<div class="section" id="support-contact" style="text-align:center; margin:40px 20px; padding:30px; background:rgba(255,255,255,0.1); border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.2);">
+    <h2 style="color:white; font-size:28px; margin-bottom:10px;">Need Help?</h2>
+    <p style="color:white; font-size:18px;">Call our support team: <strong>0538718569</strong></p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-section">
+        <div>
+            <h3>Services</h3>
+            <ul class="service-list">
+                <li>MTN Data & Airtime</li>
+                <li>Telecel Data & Airtime</li>
+                <li>MTN Mushup Bundles</li>
+                <li>BECE & WASSCE Results Checker</li>
+                <li>Utility & TV Bill Payments (Coming Soon)</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Developers</h3>
+            <div class="dev-card">
+                <img src="front end dev.jpg" alt="Front End Developer">
+                <p>Nwagha Divine</p>
+                <small>Front End Developer</small>
+            </div>
+            <div class="dev-card">
+                <img src="backend dev.jpeg" alt="Back End Developer">
+                <p>Apekpe Pius</p>
+                <small>Back End Developer</small>
+            </div>
+        </div>
+    </div>
+    <p>Best Prize Data in Ghana 💙 Fast • Reliable • Trusted</p>
+</footer>
+
+<script>
+// Scroll animation for sections
+const sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', () => {
+  const triggerBottom = window.innerHeight / 1.2;
+  sections.forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+    if(sectionTop < triggerBottom){
+      section.classList.add('visible');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

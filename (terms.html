@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Terms & Conditions | BEST PRIZE DATA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<style>
+/* Use same styling as Privacy Policy page */
+body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(45deg,#0044ff,#00aaff);color:#111;}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:rgba(0,0,0,0.7);position:fixed;width:100%;top:0;z-index:1000;flex-wrap:wrap;}
+.nav-left{display:flex;align-items:center;gap:15px;}
+.nav-left img{width:50px;height:50px;object-fit:contain;}
+.nav-left h2{margin:0;font-size:24px;color:white;}
+.nav-right{display:flex;align-items:center;gap:15px;position:relative;}
+.nav-right ul{list-style:none;display:flex;gap:25px;padding:0;margin:0;flex-wrap:wrap;}
+.nav-right ul li a{color:white;text-decoration:none;font-weight:bold;transition:0.3s;}
+.nav-right ul li a:hover{color:yellow;}
+.hamburger{display:none;flex-direction:column;cursor:pointer;}
+.hamburger div{width:25px;height:3px;background:white;margin:4px 0;transition:0.4s;}
+@media(max-width:768px){.hamburger{display:flex;}.nav-right ul{display:none;flex-direction:column;position:absolute;top:60px;right:0;background:rgba(0,0,0,0.85);width:200px;padding:20px;border-radius:10px;}.nav-right ul.show{display:flex;}}
+.container{max-width:900px;margin:120px auto 40px;background:white;padding:30px;border-radius:15px;box-shadow:0 5px 25px rgba(0,0,0,0.3);}
+h1{color:#0044ff;text-align:center;margin-bottom:20px;}
+p{margin-bottom:15px;line-height:1.6;color:#333;font-size:16px;}
+ul{margin-left:20px;}
+footer{margin-top:50px;padding:40px;background:rgba(0,0,0,0.85);color:white;text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-left">
+    <img src="BANNER.png" alt="Logo">
+    <h2>BEST PRIZE DATA</h2>
+  </div>
+  <div class="nav-right">
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="MTN PRODUCT PAGE.html">MTN</a></li>
+      <li><a href="TELECEL PRODUCT PAGE.HTML">Telecel</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="refund.html">Refund Policy</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>Terms & Conditions</h1>
+  <p><strong>Effective Date:</strong> February 23, 2026</p>
+  <p>Welcome to <strong>BEST PRIZE DATA</strong>. By using our website and services, you agree to the following terms and conditions:</p>
+  <ul>
+    <li>All services are for lawful purposes only.</li>
+    <li>Users must provide accurate information when purchasing data, airtime, or checking exam results.</li>
+    <li>Payments are processed securely via Paystack. We are not responsible for failed transactions outside our system.</li>
+    <li>Any misuse of our services may result in termination of access.</li>
+    <li>We reserve the right to update or modify these terms at any time. Updated terms will be posted on this page.</li>
+  </ul>
+</div>
+
+<footer>
+  <p>© 2026 BEST PRIZE DATA - Fast • Reliable • Trusted</p>
+</footer>
+
+<script>
+function toggleMenu(){document.querySelector('.nav-right ul').classList.toggle('show');}
+</script>
+</body>
+</html>

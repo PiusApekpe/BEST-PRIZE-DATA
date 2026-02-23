@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BECE Results Checker - BEST PRIZE DATA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Paystack & EmailJS -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+/* GENERAL STYLES */
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#fffbe6;
+    padding-top:80px; /* offset for fixed nav */
+    scroll-behavior: smooth;
+}
+
+/* NAVIGATION */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    background: rgba(0,0,0,0.85);
+    position: fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    flex-wrap:wrap;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.nav-left img{
+    width:40px; 
+    height:40px;
+    object-fit:contain;
+}
+
+.nav-left h2{
+    margin:0;
+    font-size:20px;
+    color:white;
+}
+
+.nav-right ul{
+    list-style:none;
+    display:flex;
+    gap:20px;
+    padding:0;
+    margin:0;
+    flex-wrap:wrap;
+}
+
+.nav-right ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.nav-right ul li a:hover{
+    color:#ffe600;
+}
+
+/* PAGE HEADER */
+.header{
+    background:#ffcc00;
+    color:#003366;
+    padding:20px;
+    text-align:center;
+    font-weight:bold;
+    font-size:20px;
+    border-radius:12px;
+    max-width:450px;
+    margin:20px auto;
+    opacity:0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+}
+
+/* FORM CONTAINER */
+.container{
+    max-width:450px;
+    margin:20px auto 30px;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    opacity:0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin:12px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#ffcc00;
+    color:#003366;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover{
+    background:#003366;
+    color:#ffcc00;
+}
+
+/* ANIMATIONS */
+.visible{
+    opacity:1 !important;
+    transform: translateY(0) !important;
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+    .header{
+        font-size:18px;
+    }
+    .nav-left h2{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="nav-left">
+        <img src="BANNER.png" alt="Logo">
+        <h2>BEST PRIZE DATA</h2>
+    </div>
+    <div class="nav-right">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="wassce.html">WASSCE Results</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="header" id="page-header">
+BECE RESULTS CHECKER - BEST PRIZE DATA
+</div>
+
+<!-- FORM CONTAINER -->
+<div class="container" id="form-container">
+
+<input type="text" id="fullname" placeholder="Candidate Full Name" required>
+<input type="text" id="indexnumber" placeholder="Index Number" required>
+<input type="text" id="examyear" placeholder="Exam Year" required>
+<input type="text" id="whatsapp" placeholder="WhatsApp Number" required>
+
+<button onclick="payAndSendEmail()">Pay GH₵10 & Check BECE</button>
+
+</div>
+
+<script>
+// 🔹 Initialize EmailJS
+emailjs.init("pi2bmfpD8_AQ3JkXl");
+
+// Fade-in on scroll animation
+const animatedElements = document.querySelectorAll('#page-header, #form-container');
+window.addEventListener('scroll', () => {
+    animatedElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50){
+            el.classList.add('visible');
+        }
+    });
+});
+
+// Paystack payment + EmailJS
+function payAndSendEmail(){
+    var fullname = document.getElementById("fullname").value;
+    var indexnumber = document.getElementById("indexnumber").value;
+    var examyear = document.getElementById("examyear").value;
+    var whatsapp = document.getElementById("whatsapp").value;
+
+    if(!fullname || !indexnumber || !examyear || !whatsapp){
+        alert("Please fill in all fields!");
+        return;
+    }
+
+    var handler = PaystackPop.setup({
+        key: 'pk_test_82f0f47663bd020f9a3e4af947d6493495e70166',
+        email: whatsapp + "@proofage.com",
+        amount: 1000 * 100, // GH₵10
+        currency: "GHS",
+        callback: function(response){
+            emailjs.send("service_nikspbt", "template_grvhvji", {
+                fullname: fullname,
+                examtype: "BECE",
+                indexnumber: indexnumber,
+                examyear: examyear,
+                whatsapp: whatsapp,
+                reference: response.reference
+            })
+            .then(function(){
+                alert("Payment successful! Order received and sent to your email.");
+            })
+            .catch(function(error){
+                alert("Payment successful but email failed. Check EmailJS setup.");
+            });
+        },
+        onClose: function(){
+            alert('Transaction cancelled.');
+        }
+    });
+
+    handler.openIframe();
+}
+</script>
+
+</body>
+</html>

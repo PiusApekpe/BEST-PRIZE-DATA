@@ -1,212 +1,263 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>PROOFAGE DATA</title>
+<title>BEST PRIZE DATA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 <link rel="shortcut icon" href="BANNER.png" type="image/x-icon">
 <style>
-
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(45deg,#0044ff,#00aaff);
-    color:white;
-    text-align:center;
-}
-
 /* NAVIGATION */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 20px;
-    background:rgba(0,0,0,0.6);
-    flex-wrap:wrap;
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: black;
+  color: white;
+  position: relative;
 }
 
-.nav-left{
-    display:flex;
-    align-items:center;
-    gap:10px;
+.nav-left {
+  display: flex;
+  align-items: center;
 }
 
-.nav-left img{
-    width:50px; 
-    height:50px;
-    object-fit:contain;
+.nav-left img {
+  width: 50px;
+  margin-right: 10px;
 }
 
-.nav-left h2{
-    margin:0;
-    font-size:24px;
+.nav-left h2 {
+  margin: 0;
+  font-size: 20px;
 }
 
-.nav-right ul{
-    list-style:none;
-    display:flex;
-    gap:15px;
-    padding:0;
-    margin:0;
-    flex-wrap:wrap;
+.nav-right ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.nav-right ul li a{
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-    transition:0.3s;
+.nav-right ul li {
+  margin-left: 20px;
 }
 
-.nav-right ul li a:hover{
-    color:yellow;
+.nav-right ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
-/* HERO / BANNER */
-.hero{
-    margin-top:20px;
-    animation:fadeIn 2s ease-in-out;
+.nav-right ul li a:hover {
+  color: #ffe600;
 }
 
-.hero img{
-    width:100%;
-    max-height:400px;
-    object-fit:cover;
-    border-radius:10px;
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(-20px);}
-    to{opacity:1; transform:translateY(0);}
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: white;
+  margin: 4px 0;
+  transition: 0.3s;
 }
 
-/* BUTTONS */
-.btn-container{
-    margin-top:40px;
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
+/* Responsive Nav */
+@media screen and (max-width: 768px) {
+  .nav-right ul {
+    flex-direction: column;
+    background: black;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    display: none;
+  }
+
+  .nav-right ul li {
+    margin: 15px 0;
+    text-align: center;
+  }
+
+  .nav-right.active ul {
+    display: flex;
+    animation: slideDown 0.4s ease forwards;
+  }
+
+  .hamburger {
+    display: flex;
+  }
 }
 
-.btn{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:15px 20px;
-    background:white;
-    color:black;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:bold;
-    transition:0.3s;
-    width:250px;
-    height:250px;
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-20px);}
+  100% { opacity: 1; transform: translateY(0);}
 }
-
-.btn img{
-    max-width:120px;
-    max-height:120px;
-    margin-bottom:10px;
-}
-
-.btn:hover{
-    background:yellow;
-}
-
-/* FOOTER */
-footer{
-    margin-top:50px;
-    padding:20px;
-    background:rgba(0,0,0,0.6);
-}
-
-/* RESPONSIVE */
-@media(max-width:1200px){
-    .btn{
-        width:220px;
-        height:220px;
-    }
-}
-
-@media(max-width:992px){
-    .btn{
-        width:200px;
-        height:200px;
-    }
-    .hero img{
-        max-height:350px;
-    }
-}
-
-@media(max-width:768px){
-    nav{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-    .btn-container{
-        justify-content:center;
-        gap:15px;
-    }
-    .btn{
-        width:180px;
-        height:180px;
-    }
-    .hero img{
-        max-height:300px;
-    }
-}
-
-@media(max-width:480px){
-    .btn{
-        width:160px;
-        height:160px;
-    }
-    .hero img{
-        max-height:250px;
-    }
-    .nav-left h2{
-        font-size:20px;
-    }
-}
-
 </style>
 </head>
 <body>
 
+<!-- NAVIGATION -->
 <nav>
-    <div class="nav-left">
-        <img src="BANNER.png" alt="Logo">
-        <h2>PROOFAGE DATA</h2>
-    </div>
-    <div class="nav-right">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="mtn.html">MTN</a></li>
-            <li><a href="telecel.html">Telecel</a></li>
-        </ul>
-    </div>
+  <div class="nav-left">
+      <img src="BANNER.png" alt="Logo">
+      <h2>BEST PRIZE DATA</h2>
+  </div>
+  <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+  </div>
+  <div class="nav-right" id="nav-right">
+      <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="MTN PRODUCT PAGE.html">MTN</a></li>
+          <li><a href="TELECEL PRODUCT PAGE.HTML">Telecel</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="contact.html">Contact</a></li>
+      </ul>
+  </div>
 </nav>
 
+<!-- HERO SECTION -->
 <div class="hero">
-    <img src="banner2.png" alt="Banner">
+  <img src="ban3.webp" alt="Banner">
+  <div class="hero-text">
+    <h1>Fast • Reliable • Trusted</h1>
+    <p>Buy MTN & Telecel Data, Airtime, Mushup Bundles, and Check BECE/WASSCE Results Instantly!</p>
+  </div>
 </div>
 
-<div class="btn-container">
-    <a href="mtn.html" class="btn">
-        <img src="New-mtn-logo-1.jpg.webp" alt="MTN Logo">
-        Buy MTN Data
-    </a>
+<!-- DATA SERVICES -->
+<div class="section" id="data-services">
+    <h2>Data & Bundles</h2>
+    <div class="btn-container">
+        <a href="mtn.html" class="btn">
+            <img src="New-mtn-logo-1.jpg.webp" alt="MTN Logo">
+            Buy MTN Data
+        </a>
+        <a href="telecel.html" class="btn">
+            <img src="Telcel-Ghana-logo-.jpg" alt="Telecel Logo">
+            Buy Telecel Data
+        </a>
+        <a href="mtn-mushup.html" class="btn">
+            <img src="mush up.jpg" alt="MTN Mushup">
+            MTN Mushup Bundles
+        </a>
+    </div>
+</div>
 
-    <a href="telecel.html" class="btn">
-        <img src="Telcel-Ghana-logo-.jpg" alt="Telecel Logo">
-        Buy Telecel Data
+<!-- AIRTIME SERVICES -->
+<div class="section" id="airtime-services">
+    <h2>Airtime</h2>
+    <div class="btn-container">
+        <a href="mtn-airtime.html" class="btn">
+            <img src="air time mtn.jfif" alt="MTN Airtime">
+            Buy MTN Airtime
+        </a>
+        <a href="telecel-airtime.html" class="btn">
+            <img src="tellecel airtime.png" alt="Telecel Airtime">
+            Buy Telecel Airtime
+        </a>
+    </div>
+</div>
+
+<!-- RESULTS SERVICES -->
+<div class="section" id="results-services">
+    <h2>Exam Results Checker</h2>
+    <div class="btn-container">
+        <a href="bece.html" class="btn">
+            <img src="bece.webp" alt="BECE Results">
+            Check BECE Results
+        </a>
+        <a href="wassce.html" class="btn">
+            <img src="wasce.jpg" alt="WASSCE Results">
+            Check WASSCE Results
+        </a>
+    </div>
+</div>
+
+<!-- RECTANGULAR PROMO BANNER -->
+<div class="section" id="promo-banner" style="background:#ffe600; border-radius:15px; padding:40px 20px; margin:40px 20px; text-align:center; box-shadow:0 5px 25px rgba(0,0,0,0.3);">
+    <h2 style="color:#0044ff; font-size:32px; margin-bottom:15px;">Special Offer!</h2>
+    <p style="color:#111; font-size:18px;">Purchase any data bundle today and get extra bonus data instantly! Limited time only.</p>
+</div>
+
+<!-- GOOGLE PLAY STORE DOWNLOAD SECTION -->
+<div class="section" id="download-app" style="text-align:center; margin:40px 20px;">
+    <h2 style="color:white; font-size:32px; margin-bottom:25px;">Get the BEST PRIZE DATA App</h2>
+    <a href="https://play.google.com/store" target="_blank" style="display:inline-block; background:white; padding:15px 25px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.3); text-decoration:none; transition:0.3s;">
+        <img src="google store.webp" alt="Download on Google Play" style="max-width:180px; max-height:70px; display:block; margin:0 auto;">
+        <span style="display:block; margin-top:10px; font-weight:bold; color:#111;">Download App</span>
     </a>
 </div>
 
+<!-- SUPPORT CONTACT SECTION -->
+<div class="section" id="support-contact" style="text-align:center; margin:40px 20px; padding:30px; background:rgba(255,255,255,0.1); border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.2);">
+    <h2 style="color:white; font-size:28px; margin-bottom:10px;">Need Help?</h2>
+    <p style="color:white; font-size:18px;">Call our support team: <strong>0538718569</strong></p>
+</div>
+
+<!-- FOOTER -->
 <footer>
-Best Deals Data in Ghana 💙 Fast • Reliable • Trusted
+    <div class="footer-section">
+        <div>
+            <h3>Services</h3>
+            <ul class="service-list">
+                <li>MTN Data & Airtime</li>
+                <li>Telecel Data & Airtime</li>
+                <li>MTN Mushup Bundles</li>
+                <li>BECE & WASSCE Results Checker</li>
+                <li>Utility & TV Bill Payments (Coming Soon)</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Developers</h3>
+            <div class="dev-card">
+                <img src="front end dev.jpg" alt="Front End Developer">
+                <p>Nwagha Divine</p>
+                <small>Front End Developer</small>
+            </div>
+            <div class="dev-card">
+                <img src="backend dev.jpeg" alt="Back End Developer">
+                <p>Apekpe Pius</p>
+                <small>Back End Developer</small>
+            </div>
+        </div>
+    </div>
+    <p>Best Prize Data in Ghana 💙 Fast • Reliable • Trusted</p>
 </footer>
+
+<script>
+// Scroll animation for sections
+const sections = document.querySelectorAll('.section');
+window.addEventListener('scroll', () => {
+  const triggerBottom = window.innerHeight / 1.2;
+  sections.forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+    if(sectionTop < triggerBottom){
+      section.classList.add('visible');
+    }
+  });
+});
+
+// Hamburger menu toggle
+const hamburger = document.getElementById('hamburger');
+const navRight = document.getElementById('nav-right');
+
+hamburger.addEventListener('click', () => {
+  navRight.classList.toggle('active');
+});
+</script>
 
 </body>
 </html>

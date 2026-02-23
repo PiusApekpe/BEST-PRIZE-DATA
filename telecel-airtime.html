@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Buy Telecel Airtime | BEST PRIZE DATA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="BANNER.png" type="image/x-icon">
+
+<!-- Paystack & EmailJS -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+/* GENERAL STYLES */
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(135deg,#ff0000,#cc0000);
+    padding-top:80px; /* offset for fixed nav */
+}
+
+/* NAVIGATION */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    background: rgba(0,0,0,0.85);
+    position: fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    flex-wrap:wrap;
+}
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+    font-weight:bold;
+    transition:0.3s;
+}
+nav a:hover{color:#ffe600;}
+
+/* PAGE HEADER */
+.header{
+    background:#cc0000;
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-weight:bold;
+    font-size:20px;
+    border-radius:12px;
+    max-width:450px;
+    margin:0 auto 20px;
+    opacity:0;
+    transform:translateY(40px);
+    animation: slideUp 0.8s forwards;
+}
+
+/* CONTAINER */
+.container{
+    max-width:450px;
+    margin:0 auto 30px;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    opacity:0;
+    transform:translateY(40px);
+    animation: slideUp 0.8s forwards;
+}
+
+@keyframes slideUp{
+    to{opacity:1; transform:translateY(0);}
+}
+
+.logo{width:70px;margin-bottom:10px;}
+h2{margin-bottom:5px;color:#222;}
+.subtitle{font-size:14px;color:#666;margin-bottom:25px;}
+.input-group{text-align:left;margin-bottom:15px;}
+label{font-size:13px;font-weight:600;}
+input,select{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#cc0000;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover{background:#990000;}
+
+.secure{margin-top:15px;font-size:12px;color:#888;}
+.footer{margin-top:25px;font-size:12px;color:#aaa;}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+    .header{font-size:18px;}
+    nav a{font-size:14px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div>BEST PRIZE DATA</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="mtn.html">MTN</a>
+        
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="header">BUY TELECEL AIRTIME - BEST PRIZE DATA</div>
+
+<!-- FORM CONTAINER -->
+<div class="container">
+<img src="Telcel-Ghana-logo-.jpg" class="logo">
+<h2>Buy Telecel Airtime</h2>
+<p class="subtitle">Fast • Secure • Instant Delivery</p>
+
+<form id="paymentForm">
+<div class="input-group">
+<label>Phone Number</label>
+<input type="text" id="phone" placeholder="e.g 024xxxxxxx" required>
+</div>
+
+<div class="input-group">
+<label>Select Amount (GHS)</label>
+<select id="amount" required>
+<option value="">Choose Amount</option>
+<option value="5">5 GHS</option>
+<option value="10">10 GHS</option>
+<option value="20">20 GHS</option>
+<option value="50">50 GHS</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>WhatsApp Number (optional)</label>
+<input type="text" id="whatsapp" placeholder="e.g 024xxxxxxx">
+</div>
+
+<button type="submit">Proceed to Payment</button>
+</form>
+
+<div class="secure">🔒 Secured by Paystack</div>
+<div class="footer">© 2026 BEST PRIZE DATA</div>
+</div>
+
+<script>
+// Initialize EmailJS
+emailjs.init("pi2bmfpD8_AQ3JkXl"); // Your Public Key
+
+const paystackPublicKey="pk_test_82f0f47663bd020f9a3e4af947d6493495e70166";
+
+document.getElementById("paymentForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let phone = document.getElementById("phone").value.trim();
+    let amount = document.getElementById("amount").value;
+    let whatsapp = document.getElementById("whatsapp").value.trim();
+
+    if(!phone || !amount){
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    let handler = PaystackPop.setup({
+        key: paystackPublicKey,
+        email: phone+"@proofagedata.com",
+        amount: amount*100,
+        currency:"GHS",
+        ref:"PROOFAGE_"+Math.floor(Math.random()*1000000000),
+        callback:function(response){
+            // Send EmailJS email after successful payment
+            emailjs.send("service_nikspbt","template_nunmsyu",{
+                fullname: phone,
+                phonenumber: phone,
+                bundle: amount+" GHS Airtime",
+                whatsapp: whatsapp,
+                reference: response.reference
+            }).then(function(){
+                alert("Payment successful! Order details sent to your email.");
+            }).catch(function(){
+                alert("Payment successful but email failed. Check EmailJS setup.");
+            });
+        },
+        onClose:function(){
+            alert("Transaction cancelled.");
+        }
+    });
+
+    handler.openIframe();
+});
+</script>
+
+</body>
+</html>

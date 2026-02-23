@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WASSCE Results Checker - BEST PRIZE DATA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="BANNER.png" type="image/x-icon">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+/* GENERAL STYLES */
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eaf2ff;
+    padding-top:80px; /* offset for fixed nav */
+}
+
+/* NAVIGATION */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    background: rgba(0,0,0,0.85);
+    position: fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    flex-wrap:wrap;
+}
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+    font-weight:bold;
+    transition:0.3s;
+}
+nav a:hover{color:#ffe600;}
+
+/* PAGE HEADER */
+.header{
+    background:#003366;
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-weight:bold;
+    font-size:20px;
+    border-radius:12px;
+    max-width:450px;
+    margin:0 auto 20px;
+    opacity:0;
+    transform:translateY(40px);
+    animation: slideUp 0.8s forwards;
+}
+
+/* CONTAINER */
+.container{
+    max-width:450px;
+    margin:0 auto 30px;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+    opacity:0;
+    transform:translateY(40px);
+    animation: slideUp 0.8s forwards;
+}
+
+@keyframes slideUp{
+    to{opacity:1; transform:translateY(0);}
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin:12px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#003366;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover{
+    background:#0055aa;
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+    .header{
+        font-size:18px;
+    }
+    nav a{
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div>BEST PRIZE DATA</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="bece.html">BECE Results</a>
+     
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="header">
+WASSCE RESULTS CHECKER - BEST PRIZE DATA
+</div>
+
+<!-- FORM CONTAINER -->
+<div class="container">
+    <input type="text" id="fullname" placeholder="Candidate Full Name" required>
+    <input type="text" id="indexnumber" placeholder="Index Number" required>
+    <input type="text" id="examyear" placeholder="Exam Year" required>
+    <input type="text" id="whatsapp" placeholder="WhatsApp Number" required>
+
+    <button onclick="payAndSendEmail()">Pay GH₵15 & Check WASSCE</button>
+</div>
+
+<script>
+// Initialize EmailJS
+emailjs.init("pi2bmfpD8_AQ3JkXl"); // Your public key
+
+function payAndSendEmail(){
+    var fullname = document.getElementById("fullname").value.trim();
+    var indexnumber = document.getElementById("indexnumber").value.trim();
+    var examyear = document.getElementById("examyear").value.trim();
+    var whatsapp = document.getElementById("whatsapp").value.trim();
+
+    if(!fullname || !indexnumber || !examyear || !whatsapp){
+        alert("Please fill in all fields!");
+        return;
+    }
+
+    var handler = PaystackPop.setup({
+        key: 'pk_test_82f0f47663bd020f9a3e4af947d6493495e70166',
+        email: whatsapp + "@proofage.com",
+        amount: 1500 * 100, // GH₵15
+        currency: "GHS",
+        callback: function(response){
+            emailjs.send("service_nikspbt", "template_grvhvji", {
+                fullname: fullname,
+                examtype: "WASSCE",
+                indexnumber: indexnumber,
+                examyear: examyear,
+                whatsapp: whatsapp,
+                reference: response.reference
+            })
+            .then(function(){
+                alert("Payment successful! Order received and sent to your email.");
+            })
+            .catch(function(){
+                alert("Payment successful but email failed. Check EmailJS setup.");
+            });
+        },
+        onClose: function(){
+            alert('Transaction cancelled.');
+        }
+    });
+
+    handler.openIframe();
+}
+</script>
+
+</body>
+</html>
